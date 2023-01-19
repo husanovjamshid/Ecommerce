@@ -128,3 +128,31 @@ option {
   padding: 15px 11px 14px 13px;
   border-radius: 16px;
 }
+
+.lines {
+  display: block;
+  background: #ffffff;
+  border-radius: 30px;
+  width: 18px;
+  height: 2px;
+}
+
+.catalog__line2 {
+  margin: 3px 0;
+}
+
+.catalog__line1 {
+  transform: rotate(45deg);
+  margin-bottom: -2px;
+}
+
+.catalog__line3 {
+  transform: rotate(-45deg);
+  margin-top: -2px;
+}
+
+.left__line2 {
+  transform: translateX(-250%);
+  margin: 0;
+}
+
