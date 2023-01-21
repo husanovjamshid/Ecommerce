@@ -2,8 +2,10 @@ const Fs = require("fs");
 const Path = require("path");
 const Express = require("express");
 const CookieParser = require("cookie-parser");
+ 
+let app = Express();
 
-const app = Express();
+
 
 // Middlewares
 app.use(Express.json());
@@ -23,6 +25,10 @@ Fs.readdir(routesPath, (err, files) => {
       if (Route.path && Route.router) app.use(Route.path, Route.router);
     });
   }
+
+  app.get("*", (req, res) => {
+    res.render("404");
+  });
 });
 
 module.exports = app;
