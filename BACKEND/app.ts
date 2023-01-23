@@ -1,18 +1,15 @@
-const Fs = require("fs");
-const Path = require("path");
-const Express = require("express");
-const CookieParser = require("cookie-parser");
- 
+import Fs from "fs";
+import Path from "path";
+import Express from "express";
+import CookieParser from "cookie-parser";
+
 let app = Express();
 
-
-
 // Middlewares
-app.use(Express.json());
-app.use(Express.urlencoded({ extended: true }));
 app.use(Express.static("public"));
 app.use(CookieParser());
-// Settings
+
+// Settings 
 app.set("view engine", "ejs");
 app.set("views", Path.join(__dirname, "views"));
 
@@ -30,5 +27,9 @@ Fs.readdir(routesPath, (err, files) => {
     res.render("404");
   });
 });
+// app.use(BodyParser.json());
+// app.use(BodyParser.urlencoded({ extended: true }));
+// app.use(Express.json());
+// app.use(Express.urlencoded({ extended: true }));
 
-module.exports = app;
+export default app;
