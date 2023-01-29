@@ -3,7 +3,7 @@ module.exports = class Models {
     return sequelize.define(
       "users",
       {
-        id: {
+        user_id: {
           type: Datatypes.UUID,
           defaultValue: Datatypes.UUIDV4(),
           primaryKey: true,
@@ -67,7 +67,7 @@ module.exports = class Models {
   }
 
   static async Categories(DataTypes, sequelize) {
-    sequelize.define("categories", {
+    return sequelize.define("categories", {
       category_id: {
         type: DataTypes.UUID,
         primaryKey: true,

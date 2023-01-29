@@ -2,8 +2,10 @@ const Fs = require("fs");
 const Path = require("path");
 const Express = require("Express");
 const CookieParser = require("cookie-parser");
-const BodyParser = require("body-parser");
+const Morgan = require("morgan");
+let Session = require("express-session");
 const postgres = require("./modules/postgres");
+const { v4 } = require("uuid");
 
 let app = Express();
 
@@ -11,6 +13,18 @@ let app = Express();
 app.use(Express.static("public"));
 app.use(CookieParser());
 app.use(Express.urlencoded({ extended: true }));
+app.use(Express.json());
+app.use(
+  Session({
+    genid: function (req) {
+      return v4(); // use UUIDs for session IDs
+    },
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(Morgan("tiny"));
 
 app.use(async (req, res, next) => {
   const db = await postgres();
