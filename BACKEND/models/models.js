@@ -1,41 +1,50 @@
 module.exports = class Models {
   static async Users(Datatypes, sequelize) {
-    return sequelize.define("users", {
-      id: {
-        type: Datatypes.UUID,
-        defaultValue: Datatypes.UUIDV4(),
-        primaryKey: true,
+    return sequelize.define(
+      "users",
+      {
+        user_id: {
+          type: Datatypes.UUID,
+          defaultValue: Datatypes.UUIDV4(),
+          primaryKey: true,
+        },
+        full_name: {
+          type: Datatypes.STRING(64),
+          allowNull: false,
+        },
+        phone_number: {
+          type: Datatypes.STRING(12),
+          is: /^998[389][01345789][0-9]{7}$/,
+          allowNull: false,
+        },
+        email: {
+          type: Datatypes.STRING(64),
+          is: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
+          allowNull: false,
+        },
+        role: {
+          type: Datatypes.STRING(10),
+          isIn: [["user", "superadmin", "admin"]],
+          defaultValue: "user",
+        },
+        user_attempts: {
+          type: Datatypes.SMALLINT,
+          allowNull: false,
+          defaultValue: 0,
+        },
+        password: {
+          type: Datatypes.STRING,
+        },
+        avatar: {
+          type: Datatypes.STRING,
+          allowNull: false,
+          defaultValue: "default.png",
+        },
       },
-      full_name: {
-        type: DataTypes.STRING(64),
-        allowNull: false,
-      },
-      phone_number: {
-        type: DataTypes.STRING(12),
-        is: /^998[389][01345789][0-9]{7}$/,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING(64),
-        is: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
-        allowNull: false,
-      },
-      role: {
-        type: DataTypes.STRING(10),
-        isIn: [["user", "superadmin", "admin"]],
-        defaultValue: "user",
-      },
-      user_attempts: {
-        type: DataTypes.SMALLINT,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      avatar: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "default.png",
-      },
-    });
+      {
+        timestamps: false,
+      }
+    );
   }
 
   static async Attempts(DataTypes, sequelize) {
@@ -58,7 +67,7 @@ module.exports = class Models {
   }
 
   static async Categories(DataTypes, sequelize) {
-    sequelize.define("categories", {
+    return sequelize.define("categories", {
       category_id: {
         type: DataTypes.UUID,
         primaryKey: true,

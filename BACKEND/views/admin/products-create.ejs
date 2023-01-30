@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Header -->
+    <%- include('../partials/header') %>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Sidebar -->
+      <%- include('../partials/sidebar') %>
+
+      <div id="main">
+        <header class="mb-3">
+          <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+          </a>
+        </header>
+
+        <div class="page-heading">
+          <div class="page-title">
+            <div class="row">
+              <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Product Create</h3>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav
+                  aria-label="breadcrumb"
+                  class="breadcrumb-header float-start float-lg-end"
+                >
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="/admin">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <a href="/admin/categories">Categories</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <a href="/admin/categories/<%= category_slug %>"
+                        >Sub Categories</a
+                      >
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      <a
+                        href="/admin/categories/products/<%= sub_category_id %>"
+                        >Products</a
+                      >
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Products Add
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-content">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Product Create</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <form
+                    class="form"
+                    method="post"
+                    action="/admin/categories/products/create"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="row">
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="first-name-column">UZ Name</label>
+                          <input
+                            type="text"
+                            id="first-name-column"
+                            class="form-control"
+                            placeholder="UZ Name"
+                            name="uz_name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="last-name-column">RU Name</label>
+                          <input
+                            type="text"
+                            id="last-name-column"
+                            class="form-control"
+                            placeholder="RU Name"
+                            name="ru_name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="city-column">EN Name</label>
+                          <input
+                            type="text"
+                            id="city-column"
+                            class="form-control"
+                            placeholder="EN Name"
+                            name="en_name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="country-floating">Price</label>
+                          <input
+                            type="text"
+                            id="country-floating"
+                            class="form-control"
+                            name="price"
+                            placeholder="price"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="company-column">UZ description</label>
+                          <input
+                            type="text"
+                            id="company-column"
+                            class="form-control"
+                            name="uz_description"
+                            placeholder="UZ description"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="email-id-column">RU description</label>
+                          <input
+                            type="text"
+                            id="email-id-column"
+                            class="form-control"
+                            name="ru_description"
+                            placeholder="RU description"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="email-id-column">EN description</label>
+                          <input
+                            type="text"
+                            id="email-id-column"
+                            class="form-control"
+                            name="en_description"
+                            placeholder="EN description"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="email-id-column">Options</label>
+                          <input
+                            type="text"
+                            id="email-id-column"
+                            class="form-control"
+                            name="options"
+                            placeholder="Options"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <div class="form-group">
+                          <label for="email-id-column">Sale</label>
+                          <input
+                            type="text"
+                            id="email-id-column"
+                            class="form-control"
+                            name="sale"
+                            placeholder="Sale"
+                          />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Product Images</label>
+                        <input
+                          class="form-control"
+                          type="file"
+                          id="formFileMultiple"
+                          multiple="multiple"
+                          name="images"
+                        />
+                      </div>
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary me-1 mb-1">
+                          Submit
+                        </button>
+                        <button
+                          type="reset"
+                          class="btn btn-light-secondary me-1 mb-1"
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+  </body>
+</html>
